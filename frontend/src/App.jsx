@@ -13,8 +13,9 @@ import { useAuthStore } from './state/store';
 
 const App = () => {
   const { user } = useAuthStore();
+  
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-accent-50">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
