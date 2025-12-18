@@ -1,11 +1,13 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { v4: uuid } = require('uuid');
+
+// ✅ CORRECT PATH (src/auth.js → src/db/mysql.js)
 const {
   getUserByEmail,
   getUserById,
   insertUser,
-} = require('../db/mysql'); // ✅ FIXED PATH
+} = require('./db/mysql');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'replace-me-dev-secret';
 
@@ -14,7 +16,11 @@ const JWT_SECRET = process.env.JWT_SECRET || 'replace-me-dev-secret';
 ====================== */
 const generateToken = (user) =>
   jwt.sign(
-    { sub: user.id, role: user.role, name: user.name },
+    {
+      sub: user.id,
+      role: user.role,
+      name: user.name,
+    },
     JWT_SECRET,
     { expiresIn: '7d' }
   );
@@ -27,14 +33,21 @@ const authMiddleware = (roles = []) => {
 
   return async (req, res, next) => {
     const header = req.headers.authorization || '';
-    const token = header.startsWith('Bearer ') ? header.slice(7) : null;
+    const token = header.startsWith('Bearer ')
+      ? header.slice(7)
+      : null;
 
-    if (!token) return res.status(401).json({ message: 'Missing token' });
+    if (!token) {
+      return res.status(401).json({ message: 'Missing token' });
+    }
 
     try {
       const payload = jwt.verify(token, JWT_SECRET);
       const user = await getUserById(payload.sub);
-      if (!user) return res.status(401).json({ message: 'Invalid user' });
+
+      if (!user) {
+        return res.status(401).json({ message: 'Invalid user' });
+      }
 
       const userObj = {
         id: user.id,
@@ -63,10 +76,11 @@ const register = async (req, res) => {
   let { name, email, password, role = 'student', registerNumber } = req.body;
 
   if (!name || !email || !password) {
-    return res.status(400).json({ message: 'name, email, password required' });
+    return res
+      .status(400)
+      .json({ message: 'name, email, password required' });
   }
 
-  // 🔥 VERY IMPORTANT
   role = role.toLowerCase();
 
   if (!['student', 'staff', 'admin'].includes(role)) {
@@ -78,12 +92,13 @@ const register = async (req, res) => {
   if (role === 'student' && !registerNumber) {
     return res
       .status(400)
-      .json({ message: 'Registration number is required for students' });
+      .json({ message: 'Registration number required for students' });
   }
 
   try {
     const normalizedEmail = email.trim().toLowerCase();
     const exists = await getUserByEmail(normalizedEmail);
+
     if (exists) {
       return res.status(409).json({ message: 'Email already registered' });
     }
@@ -94,7 +109,7 @@ const register = async (req, res) => {
       email: normalizedEmail,
       role,
       password: bcrypt.hashSync(password, 10),
-      registerNumber: role === 'student' ? registerNumber : null,
+      register_number: role === 'student' ? registerNumber : null,
     };
 
     await insertUser(user);
@@ -107,7 +122,7 @@ const register = async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
-        registerNumber: user.registerNumber,
+        registerNumber: user.register_number,
       },
       token,
     });
@@ -124,16 +139,23 @@ const login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({ message: 'email and password required' });
+    return res
+      .status(400)
+      .json({ message: 'email and password required' });
   }
 
   try {
     const normalizedEmail = email.trim().toLowerCase();
     const user = await getUserByEmail(normalizedEmail);
-    if (!user) return res.status(401).json({ message: 'Invalid credentials' });
+
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
 
     const ok = bcrypt.compareSync(password, user.password);
-    if (!ok) return res.status(401).json({ message: 'Invalid credentials' });
+    if (!ok) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
 
     const userObj = {
       id: user.id,
