@@ -5,6 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
+    "install-all": "npm install --prefix ../frontend",
+    "build-frontend": "npm run build --prefix ../frontend",
     "start": "node src/index.js",
     "test": "jest --runInBand"
   },
