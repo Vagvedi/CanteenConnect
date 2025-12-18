@@ -7,7 +7,7 @@ const pool = mysql.createPool({
   port: process.env.MYSQL_PORT || 3306,
   database: process.env.MYSQL_DATABASE || 'canteen_connect',
   user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || 'Bala@2005#',
+  password: process.env.MYSQL_PASSWORD || 'jerlin',
   waitForConnections: true,
   connectionLimit: process.env.MYSQL_CONNECTION_LIMIT || 10,
   queueLimit: 0,
