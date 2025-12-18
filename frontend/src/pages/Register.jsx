@@ -5,7 +5,7 @@ import { register as apiRegister } from '../api/client';
 import { useAuthStore } from '../state/store';
 
 const Register = () => {
-  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'student' });
+  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'student', registerNumber: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login } = useAuthStore();
@@ -13,10 +13,30 @@ const Register = () => {
   const submit = async (e) => {
     e.preventDefault();
     setError('');
+    
+    // Validate registration number for students
+    if (form.role === 'student' && !form.registerNumber.trim()) {
+      setError('Registration number is required for students');
+      return;
+    }
+    
     try {
-      const { user, token } = await apiRegister(form);
+      const payload = { ...form };
+      // Only send registerNumber if it's a student
+      if (form.role !== 'student') {
+        delete payload.registerNumber;
+      }
+      const { user, token } = await apiRegister(payload);
       login(user, token);
-      navigate('/menu');
+      
+      // Redirect based on role
+      if (user.role === 'admin') {
+        navigate('/admin');
+      } else if (user.role === 'staff') {
+        navigate('/orders');
+      } else {
+        navigate('/menu');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
     }
@@ -115,12 +135,30 @@ const Register = () => {
                 <select
                   className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary-400 focus:ring-2 focus:ring-primary-200 transition-all duration-200 bg-white"
                   value={form.role}
-                  onChange={(e) => setForm({ ...form, role: e.target.value })}
+                  onChange={(e) => setForm({ ...form, role: e.target.value, registerNumber: form.role === 'student' ? form.registerNumber : '' })}
                 >
                   <option value="student">Student</option>
                   <option value="staff">Staff</option>
+                  <option value="admin">Admin</option>
                 </select>
               </motion.div>
+              {form.role === 'student' && (
+                <motion.div 
+                  variants={itemVariants}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Registration Number *"
+                    className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary-400 focus:ring-2 focus:ring-primary-200 transition-all duration-200"
+                    value={form.registerNumber}
+                    onChange={(e) => setForm({ ...form, registerNumber: e.target.value })}
+                    required
+                  />
+                </motion.div>
+              )}
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.02 }}

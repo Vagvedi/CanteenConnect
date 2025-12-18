@@ -16,7 +16,13 @@ const Login = () => {
     try {
       const { user, token } = await apiLogin(form);
       login(user, token);
-      navigate('/menu');
+      
+      // Redirect based on role
+      if (user.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/menu');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     }

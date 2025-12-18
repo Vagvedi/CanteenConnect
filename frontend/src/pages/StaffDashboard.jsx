@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchMenu, updateOrderStatus, getAllOrders } from '../api/client';
+import { fetchMenu, updateOrderStatus, getOrders } from '../api/client';
 import StaffOrderCard from '../components/StaffOrderCard';
 import { useAuthStore } from '../state/store';
 
@@ -9,7 +9,8 @@ const StaffDashboard = () => {
   const [menu, setMenu] = useState([]);
 
   useEffect(() => {
-    getAllOrders().then(setOrders);
+    // Staff can only see their own orders
+    getOrders().then(setOrders);
     fetchMenu().then(setMenu);
   }, []);
 
@@ -27,8 +28,7 @@ const StaffDashboard = () => {
       <div className="glass p-5 rounded-xl shadow-sm">
         <h1 className="text-2xl font-bold text-primary">Staff Dashboard</h1>
         <p className="text-sm text-gray-600">
-          See all incoming orders with student names, tokens, and items. Menu is visible for quick
-          reference.
+          View your orders and menu items for quick reference.
         </p>
       </div>
 

@@ -6,7 +6,7 @@ import ItemDetail from './pages/ItemDetail';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
-import StaffDashboard from './pages/StaffDashboard';
+import AdminDashboard from './pages/AdminDashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { useAuthStore } from './state/store';
@@ -19,14 +19,26 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/menu/:id" element={<ItemDetail />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route 
+          path="/menu" 
+          element={user?.role === 'admin' ? <Navigate to="/admin" /> : <Menu />} 
+        />
+        <Route 
+          path="/menu/:id" 
+          element={user?.role === 'admin' ? <Navigate to="/admin" /> : <ItemDetail />} 
+        />
+        <Route 
+          path="/cart" 
+          element={user?.role === 'admin' ? <Navigate to="/admin" /> : <Cart />} 
+        />
+        <Route 
+          path="/checkout" 
+          element={user?.role === 'admin' ? <Navigate to="/admin" /> : <Checkout />} 
+        />
         <Route path="/orders" element={<Orders />} />
         <Route
-          path="/staff"
-          element={user?.role === 'staff' ? <StaffDashboard /> : <Navigate to="/login" />}
+          path="/admin"
+          element={user?.role === 'admin' ? <AdminDashboard /> : <Navigate to="/login" />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

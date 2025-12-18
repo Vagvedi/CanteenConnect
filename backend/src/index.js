@@ -2,6 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
+const { 
+  ensureUsersTable, 
+  ensureMenuTable, 
+  ensureOrdersTable, 
+  ensureBillsTable,
+  seedDefaultUsers,
+  seedDefaultMenu,
+} = require('./db/mysql');
 const authRoutes = require('./routes/auth');
 const menuRoutes = require('./routes/menu');
 const orderRoutes = require('./routes/orders');
@@ -9,6 +17,21 @@ const orderRoutes = require('./routes/orders');
 const app = express();
 app.use(cors({ origin: '*', credentials: true }));
 app.use(express.json());
+
+// Initialize MySQL tables on startup
+(async () => {
+  try {
+    await ensureUsersTable();
+    await ensureMenuTable();
+    await ensureOrdersTable();
+    await ensureBillsTable();
+    await seedDefaultUsers();
+    await seedDefaultMenu();
+    console.log('✅ MySQL tables initialized and seeded');
+  } catch (err) {
+    console.error('❌ Error initializing MySQL:', err);
+  }
+})();
 
 const server = http.createServer(app);
 const io = new Server(server, {

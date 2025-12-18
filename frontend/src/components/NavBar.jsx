@@ -64,22 +64,6 @@ const NavBar = () => {
               Orders
             </NavLink>
           </motion.div>
-          {user?.role === 'staff' && (
-            <motion.div variants={linkVariants} whileHover="hover" whileTap="tap">
-              <NavLink 
-                to="/staff" 
-                className={({ isActive }) => 
-                  `font-semibold px-3 py-2 rounded-lg transition-all duration-200 ${
-                    isActive 
-                      ? 'text-accent-600 bg-accent-50' 
-                      : 'text-gray-700 hover:text-accent-600 hover:bg-accent-50/50'
-                  }`
-                }
-              >
-                Staff
-              </NavLink>
-            </motion.div>
-          )}
           {user ? (
             <motion.button
               onClick={logout}
