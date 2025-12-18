@@ -4,6 +4,9 @@ if (!process.env.MYSQL_URL) {
   throw new Error('❌ MYSQL_URL is not defined');
 }
 
+/* ======================
+   POOL
+====================== */
 const pool = mysql.createPool({
   uri: process.env.MYSQL_URL,
   waitForConnections: true,
@@ -11,9 +14,9 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-/**
- * Wait until MySQL is ready (Railway-safe)
- */
+/* ======================
+   WAIT FOR DB (Railway-safe)
+====================== */
 async function waitForDB(retries = 15) {
   while (retries > 0) {
     try {
@@ -29,17 +32,18 @@ async function waitForDB(retries = 15) {
   throw new Error('❌ MySQL not reachable after retries');
 }
 
-/**
- * TABLES
- */
+/* ======================
+   TABLES
+====================== */
 async function ensureUsersTable() {
   await pool.query(`
     CREATE TABLE IF NOT EXISTS users (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(100),
-      email VARCHAR(100) UNIQUE,
-      password VARCHAR(255),
-      role VARCHAR(20) DEFAULT 'user',
+      id VARCHAR(36) PRIMARY KEY,
+      name VARCHAR(100) NOT NULL,
+      email VARCHAR(100) UNIQUE NOT NULL,
+      password VARCHAR(255) NOT NULL,
+      role VARCHAR(20) NOT NULL,
+      register_number VARCHAR(50),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
@@ -60,7 +64,7 @@ async function ensureOrdersTable() {
   await pool.query(`
     CREATE TABLE IF NOT EXISTS orders (
       id INT AUTO_INCREMENT PRIMARY KEY,
-      user_id INT,
+      user_id VARCHAR(36),
       item VARCHAR(100),
       quantity INT,
       status VARCHAR(20),
@@ -80,6 +84,46 @@ async function ensureBillsTable() {
   `);
 }
 
+/* ======================
+   AUTH DB FUNCTIONS (🔥 FIX)
+====================== */
+async function getUserByEmail(email) {
+  const [rows] = await pool.query(
+    'SELECT * FROM users WHERE email = ?',
+    [email]
+  );
+  return rows[0];
+}
+
+async function getUserById(id) {
+  const [rows] = await pool.query(
+    'SELECT * FROM users WHERE id = ?',
+    [id]
+  );
+  return rows[0];
+}
+
+async function insertUser(user) {
+  const {
+    id,
+    name,
+    email,
+    password,
+    role,
+    register_number,
+  } = user;
+
+  await pool.query(
+    `INSERT INTO users
+     (id, name, email, password, role, register_number)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    [id, name, email, password, role, register_number]
+  );
+}
+
+/* ======================
+   EXPORTS
+====================== */
 module.exports = {
   pool,
   waitForDB,
@@ -87,4 +131,7 @@ module.exports = {
   ensureMenuTable,
   ensureOrdersTable,
   ensureBillsTable,
+  getUserByEmail,
+  getUserById,
+  insertUser,
 };
