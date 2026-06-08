@@ -1,280 +1,465 @@
+# 🍽️ CanteenConnect
 
+# 🚀 Smart Campus Dining Reimagined
+
+### Transforming Traditional College Canteens into Intelligent Digital Food Ecosystems
+
+**Order Faster • Wait Less • Eat Better**
+
+A modern full-stack canteen management platform designed to revolutionize the dining experience for students, staff, and administrators through real-time ordering, digital payments, smart inventory management, and powerful analytics.
+
+---
+
+### 🌟 Live Demo
+
+```text
+Frontend : https://canteenconnect.vercel.app
+
+Backend  : Supabase
+
+Database : PostgreSQL
+```
+
+### 📱 Built For
+
+🎓 Students
+
+👨‍🍳 Canteen Staff
+
+🏫 College Administration
+
+📊 Business Analytics
+
+---
+
+# 📖 Table of Contents
+
+* About the Project
+* Problem Statement
+* Solution Overview
+* Key Features
+* User Roles
+* Technology Stack
+* System Architecture
+* Screenshots
+* Project Structure
+* Database Design
+* Security Features
+* Installation
+* Environment Setup
+* Usage Guide
+* API Integration
+* Performance Optimizations
+* Testing
+* Deployment
+* Future Roadmap
+* Impact
+* Contributing
+* Developer
+* License
+
+---
+
+# 🎯 About The Project
+
+CanteenConnect is a next-generation campus dining platform built to digitize and optimize food ordering systems in educational institutions.
+
+Traditional college canteens often struggle with:
+
+* Long waiting queues
+* Manual order management
+* Communication inefficiencies
+* Inventory tracking challenges
+* Payment handling complexities
+* Lack of operational insights
+
+CanteenConnect solves these challenges through a centralized digital ecosystem where students can browse menus, place orders, track preparation status, and enjoy a seamless dining experience.
+
+---
+
+# 🚨 Problem Statement
+
+In most colleges, food ordering remains largely manual.
+
+Students frequently encounter:
+
+❌ Long queues during peak hours
+
+❌ Uncertainty regarding order status
+
+❌ Delayed service
+
+❌ Cash handling issues
+
+❌ Lack of menu transparency
+
+Meanwhile, canteen operators struggle with:
+
+❌ Order mismanagement
+
+❌ Inventory wastage
+
+❌ Manual record keeping
+
+❌ Peak-hour congestion
+
+❌ Revenue tracking difficulties
+
+These inefficiencies negatively impact both customer satisfaction and operational productivity.
+
+---
+
+# 💡 Solution
+
+CanteenConnect provides a comprehensive digital solution enabling:
+
+✅ Online Food Ordering
+
+✅ Real-Time Order Tracking
+
+✅ Digital Payments
+
+✅ Menu Management
+
+✅ Inventory Monitoring
+
+✅ Role-Based Access Control
+
+✅ Administrative Analytics
+
+✅ Mobile-Friendly Experience
+
+---
+
+# ✨ Features
+
+## 🎓 Student Experience
+
+### 🔐 Secure Authentication
+
+* User Registration
+* Secure Login
+* Session Persistence
+* Role-Based Authorization
+
+### 🍔 Smart Food Ordering
+
+* Browse Food Categories
+* Search Menu Items
+* View Detailed Descriptions
+* Add Items to Cart
+* Instant Checkout
+
+### 📦 Real-Time Order Tracking
+
+Track order progress:
+
+```text
+Order Placed
+      ↓
+Order Accepted
+      ↓
+Preparing Food
+      ↓
+Ready for Pickup
+      ↓
+Completed
+```
+
+### ❤️ Enhanced User Experience
+
+* Responsive Interface
+* Dark Mode
+* Smooth Animations
+* Mobile Optimization
+* Fast Navigation
+
+---
+
+## 👨‍🍳 Staff Dashboard
+
+### Order Management
+
+* View Incoming Orders
+* Accept / Reject Orders
+* Update Status
+* Manage Preparation Queue
+
+### Inventory Management
+
+* Monitor Stock
+* Update Availability
+* Add New Menu Items
+* Remove Out-of-Stock Products
+
+### Operational Control
+
+* Manage Daily Orders
+* View Active Orders
+* Track Performance Metrics
+
+---
+
+## 👨‍💼 Admin Dashboard
+
+### User Management
+
+* Manage Students
+* Manage Staff Accounts
+* Role Assignment
+
+### Analytics Dashboard
+
+* Revenue Monitoring
+* Daily Orders
+* Peak Hour Analysis
+* Popular Food Items
+* Sales Trends
+
+### System Administration
+
+* Platform Monitoring
+* Security Controls
+* Database Management
+
+---
+
+# 🏗️ System Architecture
+
+```text
+┌─────────────────────────────┐
+│        React Frontend       │
+│ Components + Routing + UI   │
+└──────────────┬──────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│         Supabase            │
+│ Auth • APIs • Storage       │
+└──────────────┬──────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│      PostgreSQL Database    │
+│ Users • Orders • Menu       │
+└─────────────────────────────┘
+```
+
+---
+
+# 🚀 Technology Stack
+
+## Frontend
+
+* React.js
+* Vite
+* Tailwind CSS
+* React Router DOM
+* Zustand
+* Framer Motion
+* Lucide React
+
+## Backend
+
+* Supabase
+* PostgreSQL
+* Node.js
+
+## API & Networking
+
+* Axios
+* REST APIs
+
+## Testing
+
+* Vitest
+* React Testing Library
+
+---
+
+# 🛡️ Security Features
+
+### Authentication
+
+* Supabase Auth
+* Session Management
+* Secure Login
+* Password Encryption
+
+### Authorization
+
+Role-Based Access Control (RBAC)
+
+```text
+Student → Place Orders
+
+Staff → Manage Orders
+
+Admin → Full Access
+```
+
+### Database Protection
+
+* Row Level Security
+* Protected Queries
+* Secure Environment Variables
+
+---
+
+# 📊 Analytics & Reporting
+
+CanteenConnect provides powerful insights:
+
+📈 Daily Revenue
+
+📈 Weekly Revenue
+
+📈 Monthly Revenue
+
+📈 Total Orders
+
+📈 Peak Hours
+
+📈 Best Selling Items
+
+📈 Customer Activity
+
+📈 Inventory Consumption
+
+---
+
+# ⚡ Performance Optimizations
+
+### Frontend
+
+* Lazy Loading
+* Component Memoization
+* Zustand State Management
+* Route Optimization
+
+### Backend
+
+* Indexed Queries
+* Optimized PostgreSQL Relations
+* Efficient API Calls
+
+### User Experience
+
+* Instant UI Updates
+* Fast Loading Screens
+* Smooth Animations
+* Mobile Responsiveness
+
+---
+
+# 📱 Future Roadmap
+
+## Phase 1
+
+* QR Code Ordering
+* Online Payments
+* Push Notifications
+
+## Phase 2
+
+* AI Food Recommendations
+* Loyalty Rewards
+* Student Coupons
+
+## Phase 3
+
+* Predictive Inventory Management
+* Demand Forecasting
+* AI Sales Analytics
+
+## Phase 4
+
+* Mobile App (Android)
+* Mobile App (iOS)
+* Voice Ordering
+
+---
+
+# 🌍 Real-World Impact
+
+### Benefits for Students
+
+* Reduced Waiting Time
+* Faster Ordering
+* Better Dining Experience
+
+### Benefits for Staff
+
+* Improved Efficiency
+* Better Order Tracking
+* Reduced Operational Errors
+
+### Benefits for Institutions
+
+* Data-Driven Decisions
+* Revenue Insights
+* Digital Transformation
+
+---
+
+# 🏆 Why CanteenConnect Stands Out
+
+Unlike traditional canteen systems, CanteenConnect provides:
+
+✅ Modern UI/UX
+
+✅ Real-Time Order Tracking
+
+✅ Secure Authentication
+
+✅ Role-Based Management
+
+✅ Scalable Cloud Architecture
+
+✅ Advanced Analytics
+
+✅ Mobile-First Design
+
+✅ Enterprise-Level Security
+
+---
+
+# 👨‍💻 Developer
+
+## Bala Raju
+
+Full Stack Developer
+
+### Interests
+
+* Web Development
+* Cloud Computing
+* Data Analytics
+* Product Design
+* Software Engineering
+
+### Connect
+
+```text
+GitHub   : https://github.com/yourusername
+
+LinkedIn : https://linkedin.com/in/yourprofile
+
+Email    : yourmail@example.com
+```
+
+---
+
+# 📄 License
+
+Licensed under the MIT License.
+
+---
 
 # 🍽️ CanteenConnect
 
+### Making Campus Dining Smarter, Faster, and Better
 
-*A modern, full-stack college canteen management system built with React and Supabase. Streamline your campus dining experience with real-time order tracking, intuitive menu browsing, and efficient staff management.*
+⭐ Star the Repository if you found it useful ⭐
 
----
-
-## 🚀 Tech Stack
-
-### Frontend
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%61DAFB)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
-![Zustand](https://img.shields.io/badge/zustand-%23000000.svg?style=for-the-badge&logo=zustand&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-black.svg?style=for-the-badge&logo=framer-motion&logoColor=0099FF)
-![Lucide](https://img.shields.io/badge/Lucide-000000?style=for-the-badge&logo=Lucide&logoColor=white)
-
-### Backend & Database
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![Axios](https://img.shields.io/badge/axios-671ddf?style=for-the-badge&logo=axios&logoLogo=white)
-
-### Testing & DevTools
-![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
-![Testing Library](https://img.shields.io/badge/Testing_Library-C21325?style=for-the-badge&logo=testing-library&logoColor=white)
-
----
-
-## ✨ Features
-
-### 🎓 Student Experience
-- **🔐 Seamless Authentication** - Quick signup and login with secure session management
-- **📱 Intuitive Menu Browsing** - Browse items by category with rich details and images
-- **🛒 Smart Cart Management** - Add, remove, and update quantities with real-time calculations
-- **⚡ One-Click Checkout** - Streamlined payment process with order confirmation
-- **📊 Real-Time Order Tracking** - Live status updates from preparation to delivery
-- **📜 Order History** - View past orders and re-order favorite items
-
-### 👨‍🍳 Staff Dashboard
-- **📈 Real-Time Order Dashboard** - Live view of all active orders with status indicators
-- **🔄 Status Management** - Update orders: Placed → Preparing → Ready → Delivered
-- **🔍 Smart Filtering** - Filter orders by status, time, or customer
-- **💰 Bill Preview** - Detailed order breakdown with pricing and taxes
-- **⏱️ Preparation Timer** - Track estimated preparation times for efficiency
-- **📊 Analytics Overview** - Order trends and popular items insights
-
----
-
-## 🛠️ Installation
-
-### Prerequisites
-- ![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=flat-square&logo=node.js&logoColor=white) **Node.js 18+** 
-- ![npm](https://img.shields.io/badge/npm-CB3837?style=flat-square&logo=npm&logoColor=white) **npm or yarn**
-- ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white) **Supabase account**
-
-### Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/username/canteen-connect.git
-cd canteen-connect
-
-# Install dependencies
-cd frontend
-npm install
-
-# Configure environment
-cp env.example .env
-# Edit .env with your Supabase credentials
-
-# Start development server
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) to view the application.
-
----
-
-## 📁 Project Structure
-
-```
-canteen-connect/
-├── frontend/
-│   ├── src/
-│   │   ├── api/              # 🌐 API client configuration
-│   │   ├── components/       # 🧩 Reusable React components
-│   │   │   ├── NavBar.jsx
-│   │   │   ├── MenuCard.jsx
-│   │   │   ├── CartSidebar.jsx
-│   │   │   └── StaffOrderCard.jsx
-│   │   ├── hooks/            # 🎣 Custom React hooks
-│   │   ├── lib/              # 🛠️ Utilities & Supabase setup
-│   │   ├── pages/            # 📄 Page components
-│   │   │   ├── Home.jsx
-│   │   │   ├── Menu.jsx
-│   │   │   ├── Cart.jsx
-│   │   │   ├── Checkout.jsx
-│   │   │   ├── Orders.jsx
-│   │   │   └── AdminDashboard.jsx
-│   │   ├── state/            # 📦 Zustand store management
-│   │   │   ├── store.js
-│   │   │   └── cartStore.js
-│   │   ├── App.jsx           # 🎯 Main app component
-│   │   ├── main.jsx          # 🚀 Entry point
-│   │   └── index.css         # 🎨 Global styles (Tailwind)
-│   ├── public/               # 📂 Static assets
-│   ├── vite.config.js        # ⚙️ Vite configuration
-│   ├── tailwind.config.js    # 🎨 Tailwind CSS configuration
-│   └── package.json          # 📋 Dependencies & scripts
-├── README.md                 # 📖 Project documentation
-└── .gitignore               # 🚫 Git ignore rules
-```
-
----
-
-## 🎯 Usage Guide
-
-### For Students
-1. **Create Account** - Sign up with email and password
-2. **Browse Menu** - Explore categories and view item details
-3. **Add to Cart** - Select items and customize quantities
-4. **Place Order** - Review cart and confirm order
-5. **Track Status** - Monitor real-time order progress
-
-### For Staff
-1. **Login Dashboard** - Access staff portal with credentials
-2. **View Orders** - See incoming orders in real-time
-3. **Update Status** - Change order status as you progress
-4. **Manage Menu** - Add, edit, or remove menu items
-5. **View Analytics** - Track sales and popular items
-
----
-
-## 🔧 Environment Configuration
-
-Create a `.env` file in the `frontend/` directory:
-
-```env
-# Supabase Configuration
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anonymous_key
-
-# API Configuration
-VITE_API_BASE_URL=http://localhost:3000
-```
-
-### Supabase Setup
-1. Create a new project at [supabase.com](https://supabase.com)
-2. Run the SQL schema to create required tables
-3. Configure authentication providers
-4. Set up Row Level Security (RLS) policies
-
----
-
-## 🧪 Testing
-
-```bash
-# Run test suite
-npm test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Generate coverage report
-npm run test:coverage
-```
-
-Current test coverage:
-- ✅ Component rendering
-- ✅ User interactions
-- ✅ API integration
-- 🔄 State management (in progress)
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. **🍴 Fork the repository**
-2. **🌿 Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **💾 Commit your changes**
-   ```bash
-   git commit -m 'Add amazing feature'
-   ```
-4. **📤 Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **🔄 Open a Pull Request**
-
-### Development Guidelines
-- Follow the existing code style
-- Write tests for new features
-- Update documentation
-- Ensure all tests pass
-
----
-
-## 🗺️ Roadmap
-
-- [ ] 💳 **Payment Gateway Integration** - Stripe, Razorpay support
-- [ ] 📧 **Email Notifications** - Order confirmations and status updates
-- [ ] 📅 **Order Scheduling** - Pre-order meals in advance
-- [ ] ⭐ **Review System** - Rate and review menu items
-- [ ] 📊 **Advanced Analytics** - Detailed sales insights and reports
-- [ ] 📱 **Mobile App** - React Native version
-- [ ] 🌐 **Multi-Language Support** - Internationalization
-- [ ] 🎨 **Dark Mode** - Theme customization
-
----
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Supabase Connection Error**
-```bash
-# Verify environment variables
-echo $VITE_SUPABASE_URL
-echo $VITE_SUPABASE_ANON_KEY
-
-# Check Supabase project status
-# Visit dashboard.supabase.com
-```
-
-**Build Issues**
-```bash
-# Clear cache and reinstall
-rm -rf node_modules package-lock.json
-npm install
-npm run build
-```
-
-**Authentication Problems**
-- Check RLS policies in Supabase
-- Verify email confirmation settings
-- Review authentication configuration
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🌟 Acknowledgments
-
-- **React Team** - For the amazing frontend framework
-- **Supabase** - For the excellent backend-as-a-service platform
-- **Tailwind CSS** - For the utility-first CSS framework
-- **Framer Motion** - For smooth animations and transitions
-
----
-
-## 📞 Support
-
-- 📧 **Email**: support@canteenconnect.com
-- 💬 **Discord**: [Join our community](https://discord.gg/canteenconnect)
-- 🐛 **Issues**: [Report a bug](https://github.com/username/canteen-connect/issues)
-- 💡 **Feature Requests**: [Suggest an idea](https://github.com/username/canteen-connect/discussions)
-
----
-
-
-
-**⭐ Star this repository if it helped you!**
-
-Made with ❤️ by [Your Name](https://github.com/username)
-
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-%23000000.svg?style=for-the-badge&logo=github&logoColor=white)](#-canteenconnect)
-
+Built with ❤️ for Students and Institutions
